@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cinematic Caption"
+  short_description: "Add spatial editorial captions to HyperFrames"
+  default_prompt: "Use $cinematic-caption to add cinematic spatial captions to the active HyperFrames project."
