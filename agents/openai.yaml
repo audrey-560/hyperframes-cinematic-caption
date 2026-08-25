@@ -1,4 +1,4 @@
 interface:
   display_name: "Cinematic Caption"
-  short_description: "Add spatial editorial captions to HyperFrames"
-  default_prompt: "Use $cinematic-caption to add cinematic spatial captions to the active HyperFrames project."
+  short_description: "Add ordered mixed-depth captions to HyperFrames"
+  default_prompt: "Use $cinematic-caption to add progressive directional captions, animated hero fills, readable subject-aware depth, and coherent CTA grouping to the active HyperFrames project."

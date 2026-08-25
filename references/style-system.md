@@ -7,6 +7,7 @@ Use this reference to turn speech into a repeatable, generic design system. It i
 - Default to 2–5 displayed words and roughly 0.65–1.8 seconds per cue.
 - Break on meaning, contrast, breath, and rhetorical turns rather than fixed word counts.
 - Remove filler and terminal punctuation unless punctuation is the visual idea.
+- Keep ordinary support text in natural mixed case. Reserve all caps for acronyms, short proof labels, or an intentionally forceful CTA keyword.
 - Keep a cue to one line when practical. Use two lines only for a deliberate hero lockup.
 - Let important phrases hold longer; do not make every spoken word visible.
 
@@ -47,9 +48,13 @@ At each cue midpoint:
 5. keep the reading path coherent across adjacent cues while changing zones often enough to feel composed;
 6. alternate positions when the subject, gesture, cut, or argument motivates the move.
 
+For each semantic group, record a `flowDirection` such as `upper-left-to-lower-right`, `top-to-bottom`, or `left-to-right`. Successive fragments may move farther along that vector or stay aligned, but must not reverse direction. Spatial variety comes from a new group choosing a justified path, not from zigzagging inside one sentence.
+
 Valid placements include upper-left, upper-right, shoulder-left, shoulder-right, center-gap, lower-left, and lower-right. Avoid the bottom platform UI zone and avoid placing thin white type over bright windows or sky without a restrained shadow, scrim, or alternate color.
 
-Across a typical 8–12 second passage, use at least three distinct placement states when the footage provides safe space. Vary alignment and stack geometry as well as x/y position: left stair-step, right stair-step, centered hero plus small eyebrow, or a large background proof word with a compact foreground support stack.
+Across a typical 8–12 second passage, use at least four distinct placement states when the footage provides safe space. Vary alignment and stack geometry as well as x/y position: left stair-step, right stair-step, centered hero plus small eyebrow, foreground chest payoff, or a large background proof word with a compact foreground support stack. Do not repeat the same placement, alignment, scale relationship, and fill treatment on adjacent designed cues.
+
+For progressive speech, let semantic fragments accumulate into the final lockup at their word starts. A phrase may begin as compact support copy, hand off to a background hero word, and finish with a foreground payoff. Do not reveal the completed lockup before its words are spoken.
 
 When automatic face/object detection is unavailable, use conservative placement and verify every midpoint snapshot manually.
 
@@ -89,6 +94,12 @@ True behind-person typography uses three layers:
 
 Keep ordinary support captions above the subject layer. If a clean matte is unavailable, use a manually verified occlusion mask only for a stable shot. Otherwise do not fake the depth—place the word beside or above the person with face clearance. Hair, hands, and gestures count as part of the subject silhouette.
 
+The foreground layer must share the base footage's exact timing and geometry. Confirm start time, frame rate, duration, dimensions, crop, and object-fit before judging the matte. Inspect at least three frames with visible movement in hair, hands, or shoulders. A soft duplicate contour can come from separately compressed foreground RGB even when timing matches; rebuild the cutout from the original source pixels and the existing matte alpha so the foreground and background colors remain identical. Use a high-quality alpha-capable local encode and never add a cosmetic shadow to the subject layer.
+
+Record an `occlusionBudget` for each background hero. Aim for 10–30% of the glyph area crossing hair, shoulders, arms, or torso; 35% is the upper limit for a short familiar word. Face and mouth coverage never counts as acceptable overlap. If identifying letters disappear, reposition or resize the word.
+
+Treat identifying internal glyphs as protected. For words with repeated or narrow letters, preserve enough of the center to make spelling immediate; prefer overlap at the first or last outer stroke. Confirm the exact displayed spelling in a midpoint snapshot rather than trusting the DOM text alone.
+
 ### Soft bloom
 
 Reserve for luminous, aspirational, technology, energy, reveal, or premium-payoff language, or when the user explicitly asks for glow. Animate a 0.20–0.40 second bloom at entry, then settle to a readable edge. Use layered text-shadow or a blurred duplicate at low opacity. Never leave a thick neon halo around routine dialogue.
@@ -96,6 +107,8 @@ Reserve for luminous, aspirational, technology, energy, reveal, or premium-payof
 ### Evidence graphics
 
 Maps, listing cards, photos, icons, numbers, or mini-panels may support `proof` cues. Treat them as evidence attached to the sentence, not decorative filler. Prefer one cluster with clear hierarchy. Rounded cards can use a faint rim light or bloom, but should remain subordinate to the message.
+
+Keep standalone evidence visually native. A screenshot may use its own edge and a restrained shadow; folders and files should appear as objects. Add a panel only when it represents a real browser, chat, dialog, or other interface surface. For sequential instructions, assign related assets a `persistenceGroup` and retain completed steps while the next dependent action appears when the frame has room.
 
 ### Subject transition
 
@@ -150,8 +163,17 @@ Create `cinematic-caption-plan.json` with this shape:
       "role": "contrast",
       "emphasis": "hero",
       "placement": "shoulder-right",
+      "layoutState": "background-hero-with-foreground-support",
+      "buildMode": "foreground-background-handoff",
+      "flowDirection": "upper-left-to-lower-right",
+      "persistenceGroup": null,
+      "foregroundText": "electricity",
+      "heroText": "cheaper",
       "depthStrategy": "negative-space",
       "treatment": "translucent-animated-fill",
+      "fillSource": "gradient",
+      "palette": ["#F4FBFF", "#62B6FF", "#8DEBD5"],
+      "occlusionBudget": 0,
       "motion": "firm-settle-with-fill-drift",
       "graphic": null,
       "audioAccent": "light-impact",
@@ -183,10 +205,21 @@ Use exact seconds. Cue IDs must be stable so markup, tracks, motion metadata, sn
 - Normal support copy is predominantly white and stacked with intentional hierarchy.
 - Important numbers and locations receive a visibly larger proof tier when present.
 - Placement changes across the passage rather than repeating one subtitle position.
+- Ordinary support text uses mixed case unless a clear semantic reason calls for all caps.
+- Progressive builds follow actual word starts and never reveal the completed phrase early.
+- Adjacent hero cues vary placement, scale relationship, or fill treatment.
 - Behind-subject claims correspond to a real matte or occlusion mask.
+- The subject layer is frame-locked to the base footage and has no visible halo, doubled edge, shadow, or color shift at hair, hands, or shoulders.
+- Background hero words remain recognizable within their recorded occlusion budgets.
+- Hero-word spelling is visually unambiguous; identifying internal glyphs are not hidden.
+- Each semantic group follows its declared direction without vertical or horizontal reversals.
+- Captions remain level unless an explicit style rationale justifies rotation.
+- Sequential instructional assets persist when the next step depends on them, without generic framing around native assets.
+- CTA fragments form one compact cluster and reveal in reading order.
 - Glow settles to crisp readable type.
 - No cue covers a face, mouth, hand gesture, product, UI, or important scene detail.
 - Caption contrast works on its actual midpoint frame.
 - Audio transients land with visuals and do not mask narration.
 - Motion remains correct when seeking directly to any cue.
+- A chronological contact sheet reads as one coherent sequence without repeated centered stacks.
 - HyperFrames lint, runtime, layout, motion, and contrast checks pass.

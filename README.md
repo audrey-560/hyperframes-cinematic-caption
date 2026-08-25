@@ -2,7 +2,7 @@
 
 A portable AI skill for adding premium spatial editorial captions to HyperFrames videos.
 
-Instead of placing every subtitle in a fixed strip, the skill turns speech into short semantic caption moments. It uses predominantly white support copy, changing spatial placement, oversized hero words, proof-scale numbers and locations, translucent animated fills, restrained glow, and optional synchronized sound accents.
+Instead of placing every subtitle in a fixed strip, the skill turns speech into short semantic caption moments. It uses mixed-case white support copy, progressive word stacking, directional spatial layouts, foreground/background pairings, oversized hero words, proof-scale numbers and locations, animated translucent or video-through-text fills, real subject depth, restrained glow, and optional synchronized sound accents.
 
 ## Requirements
 
@@ -45,7 +45,9 @@ Or ask naturally:
 - “Make the important words large, translucent, and animated.”
 - “Give these captions a premium real-estate editorial style.”
 
-The skill analyzes word timing, edits speech into concise semantic cues, identifies which ideas deserve emphasis, plans safe placement around the subject, implements the caption overlay, and verifies representative frames before rendering.
+The skill analyzes word timing, edits speech into concise semantic cues, identifies which ideas deserve emphasis, plans a changing sequence of layouts around the subject, implements progressive mixed-depth caption overlays, and verifies both representative frames and the complete visual sequence before rendering.
+
+Designed passages avoid repeating one centered stack without becoming chaotic. Each phrase follows a deliberate reading direction, captions stay level by default, identifying letters remain readable through subject overlap, and CTA fragments stay grouped. Subject-depth layers are checked for frame sync and clean alpha edges so hair and shoulders do not acquire a doubled shadow. Instructional edits can also preserve folders, files, and screenshots across dependent steps without placing generic cards behind every asset.
 
 ## What it produces
 
@@ -54,6 +56,7 @@ The skill analyzes word timing, edits speech into concise semantic cues, identif
 - Seek-safe motion metadata
 - Local media and optional sound-effect references
 - Verification snapshots and a passing HyperFrames check
+- A chronological caption contact sheet for reviewing layout variety
 - A local preview for approval
 
 ## Validate
