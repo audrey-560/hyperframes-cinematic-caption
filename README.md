@@ -2,7 +2,7 @@
 
 A portable AI skill for adding premium spatial editorial captions to HyperFrames videos.
 
-Instead of placing every subtitle in a fixed strip, the skill turns speech into short semantic caption moments. It uses mixed-case white support copy, progressive word stacking, directional spatial layouts, foreground/background pairings, oversized hero words, proof-scale numbers and locations, animated translucent or video-through-text fills, real subject depth, restrained glow, and optional synchronized sound accents.
+Instead of placing every subtitle in a fixed strip, the skill turns speech into short semantic caption moments. It scores the words that actually carry the claim, builds each sentence in spoken order, keeps related fragments in one spatial group, and uses mixed-case support copy, heavy display typography, translucent glass heroes, real subject depth, and restrained sound accents.
 
 ## Requirements
 
@@ -45,9 +45,9 @@ Or ask naturally:
 - “Make the important words large, translucent, and animated.”
 - “Give these captions a premium real-estate editorial style.”
 
-The skill analyzes word timing, edits speech into concise semantic cues, identifies which ideas deserve emphasis, plans a changing sequence of layouts around the subject, implements progressive mixed-depth caption overlays, and verifies both representative frames and the complete visual sequence before rendering.
+The skill analyzes word timing, scores hero candidates for meaning and proof value, edits speech into ordered semantic groups, maps the speaker’s movement across each cue, plans controlled layout changes around that motion envelope, implements progressive mixed-depth overlays, and verifies both representative frames and the complete visual sequence before rendering.
 
-Designed passages avoid repeating one centered stack without becoming chaotic. Each phrase follows a deliberate reading direction, captions stay level by default, identifying letters remain readable through subject overlap, and CTA fragments stay grouped. Subject-depth layers are checked for frame sync and clean alpha edges so hair and shoulders do not acquire a doubled shadow. Instructional edits can also preserve folders, files, and screenshots across dependent steps without placing generic cards behind every asset.
+Designed passages avoid both fixed-template repetition and random movement. Each sentence has one reading direction, consistent internal spacing, and a subject-relative anchor. Parallel hero lists can hold one stable placement instead of moving on every word; unrelated beats change only one or two design properties at a time. The default translucent treatment is neutral silver-white glass: source footage remains visible through a 32–55% fill, a fine rim preserves readability, and lower strokes can sit behind the subject when a clean matte exists.
 
 ## What it produces
 

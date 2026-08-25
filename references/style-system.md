@@ -21,6 +21,18 @@ Assign one semantic role:
 - `payoff`: the sentence's conclusion;
 - `cta`: the requested next action.
 
+Build semantic groups before styling individual cues. A group is one clause, contrast, proof statement, payoff, or CTA. Give every displayed fragment a `semanticGroupId` and an `orderIndex` that follows speech order. Omit filler when useful, but never rearrange the remaining words merely to fill empty space.
+
+Choose one stack grammar for each group:
+
+- `support → hero`: context first, decisive word second;
+- `eyebrow → hero → qualifier`: compact setup, dominant idea, then clarification;
+- `proof label → number/location`: evidence label before the large proof value;
+- `cta setup → action → keyword → tail`: the complete instruction in chronological order;
+- `parallel hero sequence`: consecutive list items replace one another in the same anchor zone.
+
+Treat phrases as semantic units when wrapping. Do not split an adjective from its noun, a preposition from its object, or an action from its required keyword when they can fit together.
+
 ## 2. Assign emphasis deliberately
 
 Use three levels:
@@ -31,7 +43,27 @@ Use three levels:
 
 Default distribution: about 60–75% support, 20–35% anchor, and no more than 5–15% hero. Do not promote a word merely because it is a noun.
 
-Prefer strong weight and scale contrast over decorative effects. Use at most one accent hue in a scene. Choose the brand accent when available; otherwise derive one high-contrast accent from the footage.
+For every possible hero, score the decision before styling:
+
+- `+3` if removing the word would weaken or change the claim;
+- `+2` for concrete proof such as a number, location, named feature, or result;
+- `+2` for a spoken stress, reversal, punchline, payoff, or CTA keyword;
+- `+1` when the word is short enough to remain powerful and readable at hero scale;
+- `−3` for filler, connective language, or a generic noun with no argumentative weight;
+- `−2` when a nearby cue already expresses the same emphasis;
+- `−2` when safe placement would hide identifying letters or important scene content.
+
+Use `hero` at a score of 4 or higher and normally choose only the highest-scoring candidate in an argument beat. Use `anchor` when the idea matters but does not clear the hero threshold. A rhetorical parallel list may promote several consecutive items as one `heroSequence`; record the shared reason instead of pretending each item is a separate payoff. It is valid for a passage to have no hero word.
+
+Prefer strong weight and scale contrast over decorative effects. For a typical 8–12 second passage, use white support, one neutral glass family, and at most one accent hue unless the brand or meaning clearly needs more.
+
+Use a three-part typography hierarchy:
+
+- support: a clean, locally bundled sans in its real regular or medium weight;
+- hero: a genuine extra-bold, black, or condensed display face whose font file contains that exact weight;
+- editorial accent: an occasional serif or italic face for a conversational action, aside, or CTA—not for every cue.
+
+Do not alias a 700 file as 800 or 900, use browser-synthesized bolding, or fake weight with a large outline. Avoid excessive negative tracking and inspect hero words at full resolution for merged strokes, false cross-lines, and ambiguous letters.
 
 Use white as the normal support-caption default. On a bright frame, preserve white with a restrained dark stroke, drop shadow, or localized feathered scrim before switching the text itself to black. Use black support copy only when it is clearly the more readable editorial choice for that exact frame.
 
@@ -39,24 +71,33 @@ Use white as the normal support-caption default. On a bright frame, preserve whi
 
 For portrait 1080×1920 work, use x=90–990 and y=240–1520 as the baseline safe zone unless the project defines stricter margins.
 
-At each cue midpoint:
+At the start, midpoint, and end of each designed cue:
 
-1. locate the face, mouth, hands, products, UI, and existing text;
-2. find the largest calm negative-space region;
-3. place the cue there with at least 40 px visual clearance from the face and mouth;
-4. stack the phrase into one to three intentional lines with the anchor creating the visual edge;
-5. keep the reading path coherent across adjacent cues while changing zones often enough to feel composed;
-6. alternate positions when the subject, gesture, cut, or argument motivates the move.
+1. locate the face, mouth, hair, shoulders, hands, products, UI, and existing text;
+2. combine those samples into a motion envelope so a safe placement remains safe throughout the cue;
+3. find the largest calm negative-space region or a clean outer hair/shoulder edge for real depth;
+4. keep foreground support at least 40 px from the face and mouth throughout the cue;
+5. stack the phrase into one to three intentional lines with the anchor creating the visual edge;
+6. preserve the group's anchor zone and reading path until the sentence, shot, or argument changes.
 
 For each semantic group, record a `flowDirection` such as `upper-left-to-lower-right`, `top-to-bottom`, or `left-to-right`. Successive fragments may move farther along that vector or stay aligned, but must not reverse direction. Spatial variety comes from a new group choosing a justified path, not from zigzagging inside one sentence.
 
 Valid placements include upper-left, upper-right, shoulder-left, shoulder-right, center-gap, lower-left, and lower-right. Avoid the bottom platform UI zone and avoid placing thin white type over bright windows or sky without a restrained shadow, scrim, or alternate color.
 
-Across a typical 8–12 second passage, use at least four distinct placement states when the footage provides safe space. Vary alignment and stack geometry as well as x/y position: left stair-step, right stair-step, centered hero plus small eyebrow, foreground chest payoff, or a large background proof word with a compact foreground support stack. Do not repeat the same placement, alignment, scale relationship, and fill treatment on adjacent designed cues.
+Across a typical 8–12 second passage, use roughly three to five layout states when the footage and argument provide safe transitions. Vary one or two properties between unrelated groups: anchor zone, alignment, scale relationship, depth, fill, or motion. Do not change all of them at once. A parallel hero sequence is one layout state even when several words replace one another inside it.
+
+Keep related lines close enough to read as one unit:
+
+- support-to-support: line-height 0.96–1.10 with no arbitrary spacer;
+- support-to-hero or hero-to-qualifier: roughly 0.15–0.45 times the support font size;
+- CTA action-to-keyword: visually adjacent, usually no more than one support line-height apart;
+- unrelated groups: separate clearly or replace the earlier group instead of leaving ambiguous floating fragments.
+
+Within a top-to-bottom group, each later fragment's top edge must stay level with or below the previous fragment. Within a left-to-right group, each later fragment must stay level with or to the right. Never use up-down-up or left-right-left order inside one sentence.
 
 For progressive speech, let semantic fragments accumulate into the final lockup at their word starts. A phrase may begin as compact support copy, hand off to a background hero word, and finish with a foreground payoff. Do not reveal the completed lockup before its words are spoken.
 
-When automatic face/object detection is unavailable, use conservative placement and verify every midpoint snapshot manually.
+When automatic face/object detection is unavailable, use conservative placement and verify the start, midpoint, and end snapshots manually.
 
 ## 4. Choose the visual treatment
 
@@ -76,13 +117,13 @@ Use when the language delivers a reversal, payoff, proof point, or CTA. Let the 
 
 Treat an important number, city, region, address fragment, percentage, or named place as visual evidence. Set it substantially larger than ordinary anchors—often 170–280 px in portrait—and allow it to span much of the frame width. Pair it with a much smaller white label. Position it behind the subject only with a real depth treatment; otherwise place it in the largest face-safe negative-space region.
 
-### Translucent animated fill
+### Tinted-glass hero fill
 
-For selected hero and proof words, replace a hard fill with a translucent spectral, gradient, footage, flag, map, or texture fill clipped inside the glyphs. Keep a crisp white or dark rim so the word remains readable. Let the internal fill drift or change for roughly 0.5–1.2 seconds after the word lands while the glyph itself holds steady.
+Use neutral silver-white tinted glass as the default translucent hero treatment. Set the glyph fill to roughly 32–55% opacity so the actual room, landscape, or source footage remains visible through the letters. Add a crisp 0.75–1.25 px rim, a restrained inner highlight, and an optional soft light sweep. Keep the letterform steady while the internal highlight moves for roughly 0.4–0.8 seconds. Repeating scan lines, striped bands, and obvious raster textures are opt-in treatments rather than part of the default glass look.
 
-Use content-relevant colors. A flag palette is appropriate only when country, region, civic identity, or the source art makes it meaningful. Otherwise derive two or three colors from the brand or footage. Do not apply the treatment to every anchor.
+Use silver-white for a clean glass sequence. Introduce one hue per word only when the brand, footage, or meaning benefits from it; do not turn one word into a pastel rainbow. Reserve multicolor, flag, map, image, or video texture for speech that semantically justifies it.
 
-For true video-through-type, use a duplicated local video or texture layer clipped to the glyphs and driven by the composition time. For a lightweight spectral version, use a multi-stop gradient with transparent color stops and deterministic background-position motion.
+For true video-through-type, use a duplicated local video clipped to the exact glyphs and driven by composition time. If a dimensional treatment is explicitly requested, reuse the same local font geometry for every layer and keep bevel or extrusion shallow. Tinted glass itself does not require extrusion.
 
 ### Behind-subject depth
 
@@ -97,6 +138,8 @@ Keep ordinary support captions above the subject layer. If a clean matte is unav
 The foreground layer must share the base footage's exact timing and geometry. Confirm start time, frame rate, duration, dimensions, crop, and object-fit before judging the matte. Inspect at least three frames with visible movement in hair, hands, or shoulders. A soft duplicate contour can come from separately compressed foreground RGB even when timing matches; rebuild the cutout from the original source pixels and the existing matte alpha so the foreground and background colors remain identical. Use a high-quality alpha-capable local encode and never add a cosmetic shadow to the subject layer.
 
 Record an `occlusionBudget` for each background hero. Aim for 10–30% of the glyph area crossing hair, shoulders, arms, or torso; 35% is the upper limit for a short familiar word. Face and mouth coverage never counts as acceptable overlap. If identifying letters disappear, reposition or resize the word.
+
+When a clean matte exists, prefer a 10–22% hairline or outer-head overlap for the most important hero words. A large word floating above an unused gap usually feels weaker than one whose lower strokes tuck behind the subject. Preserve the upper glyph structure so the complete word remains readable.
 
 Treat identifying internal glyphs as protected. For words with repeated or narrow letters, preserve enough of the center to make spelling immediate; prefer overlap at the first or last outer stroke. Confirm the exact displayed spelling in a midpoint snapshot rather than trusting the DOM text alone.
 
@@ -145,6 +188,8 @@ Sound is optional. When used, attach it to the visual landing rather than the an
 
 Default to no more than one audible accent per emphasis beat and leave quiet gaps. Keep narration intelligible, avoid harsh high-frequency clicks, and duck or reduce accents under consonant-heavy speech. Never imply that generic SFX are part of the reference creator's licensed audio.
 
+Rotate sound identity across adjacent hero beats. A useful sequence might use bass impact, one glass shimmer, a digital servo or airy sweep, a dry clockwork tick, a mechanical toggle, and a final low impact. Reserve shimmer for one luminous reveal. Adjacent beats must not reuse the same chime, and high-frequency accents must not overlap without a specific reason.
+
 ## 7. Plan schema
 
 Create `cinematic-caption-plan.json` with this shape:
@@ -153,30 +198,43 @@ Create `cinematic-caption-plan.json` with this shape:
 {
   "version": 1,
   "range": { "start": 0, "end": 12.4 },
-  "accent": "#DFFF49",
+  "accent": "#F2F5F7",
   "cues": [
     {
       "id": "cc-001",
+      "semanticGroupId": "claim-01",
+      "orderIndex": 2,
       "start": 0.42,
       "end": 1.58,
       "text": "electricity cheaper",
       "role": "contrast",
       "emphasis": "hero",
+      "heroReason": "The reversal carries the claim; score 6",
       "placement": "shoulder-right",
+      "anchorZone": "subject-right-hairline",
       "layoutState": "background-hero-with-foreground-support",
       "buildMode": "foreground-background-handoff",
       "flowDirection": "upper-left-to-lower-right",
       "persistenceGroup": null,
       "foregroundText": "electricity",
       "heroText": "cheaper",
-      "depthStrategy": "negative-space",
-      "treatment": "translucent-animated-fill",
-      "fillSource": "gradient",
-      "palette": ["#F4FBFF", "#62B6FF", "#8DEBD5"],
-      "occlusionBudget": 0,
-      "motion": "firm-settle-with-fill-drift",
+      "stackGap": "0.28em-support",
+      "subjectEnvelope": {
+        "sampleTimes": [0.42, 1.0, 1.58],
+        "protected": ["face", "mouth", "right-hand"]
+      },
+      "depthStrategy": "subject-cutout",
+      "treatment": "neutral-silver-tinted-glass",
+      "fillSource": "transparent-silver-white-with-soft-light-sweep",
+      "palette": ["rgba(255,255,255,0.52)", "rgba(198,211,220,0.30)"],
+      "occlusionBudget": 0.18,
+      "motion": "firm-settle-with-soft-light-sweep",
       "graphic": null,
-      "audioAccent": "light-impact",
+      "audioAccent": {
+        "type": "muted-bass-impact",
+        "start": 1.04,
+        "gain": 0.18
+      },
       "notes": "Keep 60 px clear of face"
     }
   ]
@@ -201,25 +259,30 @@ Use exact seconds. Cue IDs must be stable so markup, tracks, motion metadata, sn
 
 - Every spoken idea that needs support has a readable cue.
 - Timing follows semantic delivery rather than arbitrary intervals.
-- Hero words are rare and genuinely important.
+- Every hero has a recorded semantic reason and clears the hero threshold, or belongs to one documented parallel hero sequence.
 - Normal support copy is predominantly white and stacked with intentional hierarchy.
 - Important numbers and locations receive a visibly larger proof tier when present.
-- Placement changes across the passage rather than repeating one subtitle position.
+- Layout changes happen between argument beats, while fragments in the same sentence or parallel list retain a stable anchor.
 - Ordinary support text uses mixed case unless a clear semantic reason calls for all caps.
 - Progressive builds follow actual word starts and never reveal the completed phrase early.
-- Adjacent hero cues vary placement, scale relationship, or fill treatment.
+- Unrelated adjacent hero cues vary one or two design properties; parallel hero sequences remain visually stable.
 - Behind-subject claims correspond to a real matte or occlusion mask.
 - The subject layer is frame-locked to the base footage and has no visible halo, doubled edge, shadow, or color shift at hair, hands, or shoulders.
 - Background hero words remain recognizable within their recorded occlusion budgets.
 - Hero-word spelling is visually unambiguous; identifying internal glyphs are not hidden.
+- Hero words use real bundled display weights; no synthetic bolding, merged strokes, false cross-lines, or excessive negative tracking is visible.
 - Each semantic group follows its declared direction without vertical or horizontal reversals.
+- Every group reads in spoken order, uses consistent internal spacing, and contains no orphaned phrase fragments.
 - Captions remain level unless an explicit style rationale justifies rotation.
 - Sequential instructional assets persist when the next step depends on them, without generic framing around native assets.
 - CTA fragments form one compact cluster and reveal in reading order.
+- A dimensional translucent word uses one exact-font mask across fill, rim, highlight, and extrusion, with animated texture visible from its first readable frame.
+- Tinted-glass hero words preserve visible source detail through a 32–55% neutral or justified single-hue fill and sit close enough to a clean matte for 10–22% intentional hairline overlap.
 - Glow settles to crisp readable type.
-- No cue covers a face, mouth, hand gesture, product, UI, or important scene detail.
+- No foreground cue enters the recorded face/mouth motion envelope or covers a key gesture, product, UI, or important scene detail.
 - Caption contrast works on its actual midpoint frame.
 - Audio transients land with visuals and do not mask narration.
+- Adjacent hero beats have distinct primary sound identities; shimmer occurs only once and no repeated chimes overlap.
 - Motion remains correct when seeking directly to any cue.
 - A chronological contact sheet reads as one coherent sequence without repeated centered stacks.
 - HyperFrames lint, runtime, layout, motion, and contrast checks pass.
